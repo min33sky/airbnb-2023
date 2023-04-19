@@ -4,9 +4,11 @@ import React, { useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const targetRef = useOutsideClick(() => setIsOpen(false));
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -21,6 +23,7 @@ export default function UserMenu() {
         >
           Airbnb your home
         </div>
+
         <div
           onClick={toggleOpen}
           className="flex cursor-pointer items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
@@ -32,7 +35,10 @@ export default function UserMenu() {
         </div>
 
         {isOpen && (
-          <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4">
+          <div
+            ref={targetRef}
+            className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4"
+          >
             <div className="flex cursor-pointer flex-col">
               <>
                 <MenuItem label="Login" onClick={() => alert('login')} />
