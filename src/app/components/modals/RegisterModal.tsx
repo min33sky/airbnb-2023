@@ -15,7 +15,7 @@ import Modal from './Modal';
 
 const SignupSchema = z.object({
   email: z.string().email('이메일 형식이 아닙니다.'),
-  name: z.string(),
+  name: z.string().min(3).max(18),
   password: z.string().min(6).max(18),
 });
 

@@ -1,12 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegisterReturn,
-} from 'react-hook-form';
-import { SigninForm } from '../modals/LoginModal';
+import { FieldErrors, UseFormRegisterReturn } from 'react-hook-form';
 import { BiDollar } from 'react-icons/bi';
 
 interface Props {
@@ -87,6 +82,11 @@ export default function Input({
       >
         {label}
       </label>
+      {errors[id] && (
+        <p className="absolute right-2 top-1/2 -translate-y-1/2 pt-1 text-sm text-rose-500">
+          {errors[id]?.message?.toString()}
+        </p>
+      )}
     </div>
   );
 }

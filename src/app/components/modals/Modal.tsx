@@ -63,6 +63,10 @@ export default function Modal({
         className="fixed inset-0 z-50 flex items-center justify-center
         overflow-x-hidden overflow-y-hidden bg-neutral-800/70 outline-none focus:outline-none"
       >
+        <div onClick={handleClose} className="fixed inset-0">
+          <p className="sr-only">모달 닫기 영역</p>
+        </div>
+
         <div className="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-3/6 xl:w-2/5">
           {/*content*/}
           <div

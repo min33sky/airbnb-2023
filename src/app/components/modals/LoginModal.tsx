@@ -15,7 +15,7 @@ import Input from '../inputs/Input';
 import Modal from './Modal';
 
 const SigninSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email('이메일 형식이 아닙니다.'),
   password: z.string(),
 });
 
