@@ -59,7 +59,7 @@ export default function Modal({
 
   return (
     <>
-      <div
+      <article
         className="fixed inset-0 z-50 flex items-center justify-center
         overflow-x-hidden overflow-y-hidden bg-neutral-800/70 outline-none focus:outline-none"
       >
@@ -70,10 +70,11 @@ export default function Modal({
         <div className="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-3/6 xl:w-2/5">
           {/*content*/}
           <div
-            className={`translate h-full duration-300
-                ${showModal ? 'translate-y-0' : 'translate-y-full'}
-                ${showModal ? 'opacity-100' : 'opacity-0'}
-            `}
+            className={`translate h-full duration-300 ${
+              showModal
+                ? 'translate-y-0 opacity-100'
+                : 'translate-y-20 opacity-0'
+            }`}
           >
             <div
               className="translate relative flex h-full w-full flex-col
@@ -82,7 +83,7 @@ export default function Modal({
                 "
             >
               {/*header*/}
-              <div className="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
+              <header className="relative flex items-center justify-center rounded-t border-b-[1px] p-6">
                 <button
                   className="absolute left-9 border-0 p-1 transition hover:opacity-70"
                   onClick={handleClose}
@@ -90,11 +91,13 @@ export default function Modal({
                   <IoMdClose size={18} />
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
-              </div>
+              </header>
+
               {/*body*/}
               <div className="relative flex-auto p-6">{body}</div>
+
               {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
+              <footer className="flex flex-col gap-2 p-6">
                 <div className="flex w-full items-center gap-4">
                   {secondaryAction && secondaryActionLabel && (
                     <Button
@@ -111,11 +114,11 @@ export default function Modal({
                   />
                 </div>
                 {footer}
-              </div>
+              </footer>
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 }

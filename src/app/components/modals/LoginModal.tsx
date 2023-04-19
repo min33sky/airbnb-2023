@@ -87,19 +87,12 @@ export default function LoginModal() {
         icon={AiFillGithub}
         onClick={() => alert('github login')}
       />
-      <div
-        className="
-      mt-4 text-center font-light text-neutral-500"
-      >
+      <div className="mt-4 text-center font-light text-neutral-500">
         <p>
           First time using Airbnb?
           <span
             onClick={onToggle}
-            className="
-              cursor-pointer
-              text-neutral-800
-              hover:underline
-            "
+            className="cursor-pointer font-semibold text-neutral-800 hover:underline"
           >
             {' '}
             Create an account
