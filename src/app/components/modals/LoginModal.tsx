@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
 import { z } from 'zod';
@@ -13,6 +14,7 @@ import Heading from '../Heading';
 import Button from '../Button';
 import Input from '../inputs/Input';
 import Modal from './Modal';
+import { toast } from 'react-hot-toast';
 
 const SigninSchema = z.object({
   email: z.string().email('이메일 형식이 아닙니다.'),
@@ -42,6 +44,27 @@ export default function LoginModal() {
     console.log(email, password);
 
     // TODO: Login Logic
+
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+
+      console.log('## Login Result : ', result);
+
+      if (result?.ok) {
+        toast.success('로그인 성공');
+        router.refresh();
+        loginModal.onClose();
+      } else {
+        throw new Error('로그인 실패');
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.error('로그인 실패');
+    }
   };
 
   const onToggle = useCallback(() => {
