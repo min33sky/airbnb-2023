@@ -21,6 +21,9 @@ const SignupSchema = z.object({
 
 export type SignupForm = z.infer<typeof SignupSchema>;
 
+/**
+ * 회원가입 모달
+ */
 export default function RegisterModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -41,6 +44,31 @@ export default function RegisterModal() {
   }) => {
     // setIsLoading(true);
     console.log('## Register : ', email, name, password);
+
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.message);
+      }
+
+      toast.success('회원가입이 완료되었습니다.');
+
+      // TODO: 바로 로그인하기
+    } catch (error: any) {
+      toast.error(error?.message || '회원가입에 실패했습니다.');
+    }
   };
 
   const onToggle = useCallback(() => {

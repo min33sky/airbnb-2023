@@ -6,11 +6,12 @@ import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import useLoginModal from '../hooks/useLoginModal';
+import useRegisterModal from '../hooks/useRegisterModal';
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const loginModal = useLoginModal();
-  const registerModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const targetRef = useOutsideClick(() => setIsOpen(false));
 
   const toggleOpen = useCallback(() => {
@@ -47,7 +48,9 @@ export default function UserMenu() {
                 <MenuItem label="Login" onClick={() => loginModal.onOpen()} />
                 <MenuItem
                   label="Sign Up"
-                  onClick={() => registerModal.onOpen()}
+                  onClick={() => {
+                    registerModal.onOpen();
+                  }}
                 />
               </>
             </div>
