@@ -42,7 +42,7 @@ export default function UserMenu({ currentUser }: Props) {
         >
           <AiOutlineMenu size={18} />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar imageUrl={currentUser?.image || ''} />
           </div>
         </div>
 

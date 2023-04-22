@@ -5,16 +5,14 @@ interface Props {
   imageUrl?: string;
 }
 
-export default function Avatar({
-  imageUrl = '/images/placeholder.png',
-}: Props = {}) {
+export default function Avatar({ imageUrl }: Props = {}) {
   return (
     <Image
       alt="Avatar"
       className="rounded-full"
       height={30}
       width={30}
-      src={imageUrl}
+      src={imageUrl || '/images/placeholder.png'}
     />
   );
 }
