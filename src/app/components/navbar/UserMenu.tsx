@@ -5,11 +5,11 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import useLoginModal from '../hooks/useLoginModal';
-import useRegisterModal from '../hooks/useRegisterModal';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import useLoginModal from '@/hooks/useLoginModal';
+import useRegisterModal from '@/hooks/useRegisterModal';
 
 interface Props {
   currentUser?: SafeUser | null;

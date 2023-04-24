@@ -8,13 +8,13 @@ import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import useLoginModal from '../hooks/useLoginModal';
-import useRegisterModal from '../hooks/useRegisterModal';
 import Heading from '../Heading';
 import Button from '../Button';
 import Input from '../inputs/Input';
 import Modal from './Modal';
 import { toast } from 'react-hot-toast';
+import useLoginModal from '@/hooks/useLoginModal';
+import useRegisterModal from '@/hooks/useRegisterModal';
 
 const SigninSchema = z.object({
   email: z.string().email('이메일 형식이 아닙니다.'),

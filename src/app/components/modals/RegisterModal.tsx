@@ -4,14 +4,14 @@ import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import useRegisterModal from '../hooks/useRegisterModal';
-import useLoginModal from '../hooks/useLoginModal';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../Button';
 import Heading from '../Heading';
 import Input from '../inputs/Input';
 import Modal from './Modal';
+import useLoginModal from '@/hooks/useLoginModal';
+import useRegisterModal from '@/hooks/useRegisterModal';
 
 const SignupSchema = z.object({
   email: z.string().email('이메일 형식이 아닙니다.'),
