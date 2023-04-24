@@ -18,6 +18,8 @@ import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 import Container from '../Container';
 import CategoryBox from '../CategoryBox';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { map } from 'zod';
 
 export const categories = [
   {
@@ -101,13 +103,62 @@ export default function Categories() {
   const params = useSearchParams();
   const currentCategory = params?.get('category');
   const pathname = usePathname();
-  const isMainPage = pathname === '/';
 
+  // TODO: Drag to scroll
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDrag, setIsDrag] = useState(false);
+  const [startX, setStartX] = useState(0);
+
+  const onDragStart = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (!scrollRef.current) return;
+
+    setIsDrag(true);
+    // 스크롤이 이동된 상태에서 클릭 시 위치 계산하기위해
+    setStartX(e.pageX + scrollRef.current.scrollLeft);
+  }, []);
+
+  const onDragEnd = useCallback(() => {
+    setIsDrag(false);
+  }, []);
+
+  const onDragMove = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+
+      if (!isDrag || !scrollRef.current) return;
+
+      const { scrollLeft, clientWidth, scrollWidth } = scrollRef.current;
+
+      //? 드래그 방향과 스크롤 이동 방향이 반대이므로 마이너스
+      scrollRef.current.scrollLeft = startX - e.pageX;
+
+      console.log('## e.pageX', e.pageX);
+      if (scrollLeft === 0) {
+        setStartX(e.pageX);
+      } else if (scrollWidth <= clientWidth + scrollLeft) {
+        setStartX(e.pageX + scrollLeft);
+      }
+    },
+    [isDrag, startX],
+  );
+
+  //? 메인페이지에서만 카테고리를 보여준다.
+  const isMainPage = pathname === '/';
   if (!isMainPage) return null;
 
   return (
     <Container>
-      <div className="flex items-center justify-between overflow-x-auto pt-4">
+      <div
+        ref={scrollRef}
+        onMouseDown={onDragStart}
+        onMouseMove={onDragMove}
+        onMouseUp={onDragEnd}
+        onMouseLeave={onDragEnd}
+        className="flex items-center justify-between overflow-x-auto pt-4"
+      >
         {categories.map((category) => (
           <CategoryBox
             key={category.label}
