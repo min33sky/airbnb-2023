@@ -5,6 +5,7 @@ import Search from './Search';
 import UserMenu from './UserMenu';
 import { User } from '@prisma/client';
 import { SafeUser } from '@/app/types';
+import Categories from './Categories';
 
 interface Props {
   currentUser?: SafeUser | null;
@@ -22,6 +23,8 @@ export default function Navbar({ currentUser }: Props) {
           </div>
         </Container>
       </nav>
+
+      <Categories />
     </header>
   );
 }
