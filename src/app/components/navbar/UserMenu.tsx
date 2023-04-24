@@ -10,6 +10,7 @@ import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
 import useLoginModal from '@/hooks/useLoginModal';
 import useRegisterModal from '@/hooks/useRegisterModal';
+import useRentModal from '@/hooks/useRentModal';
 
 interface Props {
   currentUser?: SafeUser | null;
@@ -20,6 +21,8 @@ export default function UserMenu({ currentUser }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+  const rentModal = useRentModal();
+
   const targetRef = useOutsideClick(() => setIsOpen(false));
 
   const toggleOpen = useCallback(() => {
@@ -72,7 +75,7 @@ export default function UserMenu({ currentUser }: Props) {
                   />
                   <MenuItem
                     label="Airbnb your home"
-                    onClick={() => alert('구현중')}
+                    onClick={rentModal.onOpen}
                   />
                   <hr />
                   <MenuItem label="Logout" onClick={() => signOut()} />
