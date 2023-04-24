@@ -135,7 +135,6 @@ export default function Categories() {
       //? 드래그 방향과 스크롤 이동 방향이 반대이므로 마이너스
       scrollRef.current.scrollLeft = startX - e.pageX;
 
-      console.log('## e.pageX', e.pageX);
       if (scrollLeft === 0) {
         setStartX(e.pageX);
       } else if (scrollWidth <= clientWidth + scrollLeft) {
@@ -157,7 +156,7 @@ export default function Categories() {
         onMouseMove={onDragMove}
         onMouseUp={onDragEnd}
         onMouseLeave={onDragEnd}
-        className="flex items-center justify-between overflow-x-auto pt-4"
+        className="flex items-center justify-between overflow-x-auto pb-2 pt-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-200 hover:cursor-grab"
       >
         {categories.map((category) => (
           <CategoryBox

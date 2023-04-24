@@ -48,10 +48,10 @@ export default function CategoryBox({
     <div
       onClick={handleClick}
       className={`flex cursor-pointer select-none flex-col items-center justify-center gap-2 border-b-2
-                p-3 transition hover:text-neutral-800
+                p-3 transition hover:text-rose-800
                 ${
                   selected
-                    ? 'border-b-neutral-800 text-neutral-800'
+                    ? 'border-b-rose-800 text-rose-800'
                     : 'border-transparent text-neutral-500'
                 }
       `}
