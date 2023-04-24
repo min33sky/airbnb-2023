@@ -46,6 +46,9 @@ export default function Modal({
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
+    console.log(
+      'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',
+    );
     onSubmit();
   }, [disabled, onSubmit]);
 

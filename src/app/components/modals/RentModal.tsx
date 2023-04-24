@@ -10,6 +10,7 @@ import Modal from './Modal';
 import { categories } from '@/app/utils/categories';
 import Heading from '../Heading';
 import CategoryInput from '../inputs/CategoryInput';
+import CountrySelect from '../inputs/CountrySelect';
 
 enum STEPS {
   CATEGORY = 0,
@@ -21,12 +22,18 @@ enum STEPS {
 }
 
 const RentSchema = z.object({
-  category: z.enum(['house', 'apartment', 'room']),
-  location: z.string(),
+  category: z.string(),
+  location: z.object({
+    flag: z.string(),
+    label: z.string(),
+    latlng: z.array(z.number()),
+    region: z.string(),
+    value: z.string(),
+  }),
   guestCount: z.number().int().positive(),
   roomCount: z.number().int().positive(),
   bathroomCount: z.number().int().positive(),
-  imageSrc: z.string().url(),
+  imageSrc: z.string(),
   price: z.number().int().positive(),
   title: z.string(),
   description: z.string(),
@@ -35,6 +42,9 @@ const RentSchema = z.object({
 type RentForm = z.infer<typeof RentSchema>;
 type RentFormKeys = keyof RentForm;
 
+/**
+ * RentModal
+ */
 export default function RentModal() {
   const router = useRouter();
   const rentModal = useRentModal();
@@ -51,12 +61,34 @@ export default function RentModal() {
     reset,
   } = useForm<RentForm>({
     resolver: zodResolver(RentSchema),
+    defaultValues: {
+      category: 'apartment',
+      location: {
+        label: 'Anywhere',
+        value: 'anywhere',
+        flag: '',
+        latlng: [0, 0],
+        region: '',
+      },
+      guestCount: 1,
+      roomCount: 1,
+      bathroomCount: 1,
+      imageSrc: '',
+      price: 1,
+      title: '',
+      description: '',
+    },
   });
 
-  // const map;
-  const category = watch('category');
+  //TODO: const map;
 
-  const onSubmit: SubmitHandler<RentForm> = async (data) => {
+  const category = watch('category');
+  const location = watch('location');
+
+  console.log('##### Rent Modal Errors: ', errors);
+
+  const onSubmit: SubmitHandler<RentForm> = (data) => {
+    onNext();
     console.log('## Rent : ', data);
   };
 
@@ -111,6 +143,22 @@ export default function RentModal() {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        {/* <Map center={location?.latlng} /> */}
+      </div>
+    );
+  }
+
   return (
     <Modal
       title="Airbnb your home!"
@@ -120,6 +168,7 @@ export default function RentModal() {
       onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       body={bodyContent}
     />
   );

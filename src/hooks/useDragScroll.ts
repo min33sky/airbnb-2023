@@ -12,7 +12,7 @@ export default function useDragScroll() {
     if (!scrollRef.current) return;
 
     setIsDrag(true);
-    // 스크롤이 이동된 상태에서 클릭 시 위치 계산하기위해
+    //? 스크롤이 이동된 상태에서 클릭 시 위치를 계산하기위해
     setStartX(e.pageX + scrollRef.current.scrollLeft);
   }, []);
 
