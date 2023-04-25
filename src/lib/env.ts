@@ -9,6 +9,7 @@ const envVariables = z.object({
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
   NEXTAUTH_SECRET: z.string(),
+  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: z.string(),
 });
 
 type EnvVariables = z.infer<typeof envVariables>;
