@@ -1,5 +1,14 @@
 # Next-Airbnb
 
+## Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Prisma
+- Cloudinary
+- MongoDB
+
 ## Note
 
 1. Vercel 배포 문제 (prisma 관련)
