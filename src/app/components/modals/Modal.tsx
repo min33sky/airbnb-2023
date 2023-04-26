@@ -46,15 +46,11 @@ export default function Modal({
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
-    console.log(
-      'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',
-    );
     onSubmit();
   }, [disabled, onSubmit]);
 
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) return;
-
     secondaryAction();
   }, [disabled, secondaryAction]);
 
@@ -67,7 +63,7 @@ export default function Modal({
         overflow-x-hidden overflow-y-hidden bg-neutral-800/70 outline-none focus:outline-none"
       >
         <div onClick={handleClose} className="fixed inset-0">
-          <p className="sr-only">모달 닫기 영역</p>
+          <p className="sr-only">모달을 종료할 수 있는 영역입니다...</p>
         </div>
 
         <div className="relative mx-auto my-6 h-full w-full md:h-auto md:w-4/6 lg:h-auto lg:w-3/6 xl:w-2/5">

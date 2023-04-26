@@ -14,6 +14,8 @@ import CountrySelect from '../inputs/CountrySelect';
 import dynamic from 'next/dynamic';
 import Counter from '../Counter';
 import ImageUpload from '../inputs/ImageUpload';
+import Input from '../inputs/Input';
+import { toast } from 'react-hot-toast';
 
 enum STEPS {
   CATEGORY = 0,
@@ -102,9 +104,44 @@ export default function RentModal() {
 
   console.log('##### Rent Modal Errors: ', errors);
 
-  const onSubmit: SubmitHandler<RentForm> = (data) => {
-    onNext();
+  const onSubmit: SubmitHandler<RentForm> = async (data) => {
+    if (step !== STEPS.PRICE) {
+      return onNext();
+    }
+
     console.log('## Rent : ', data);
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!! 테스트용 (지울꺼임 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ)
+    if (!data.imageSrc) {
+      setCustomValue(
+        'imageSrc',
+        'https://res.cloudinary.com/dfqxossjf/image/upload/v1682478401/tga33uhnyz6m3lfydtcl.jpg',
+      );
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('api/listings', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      toast.success('Listing created successfully');
+      router.refresh();
+      reset();
+      setStep(STEPS.CATEGORY);
+      rentModal.onClose();
+    } catch (error) {
+      console.log('## Rent Error: ', error);
+      toast.error('Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const setCustomValue = (key: RentFormKeys, value: any) => {
@@ -137,6 +174,9 @@ export default function RentModal() {
     return 'Back';
   }, [step]);
 
+  /**
+   * 모달 내용
+   */
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
@@ -215,6 +255,58 @@ export default function RentModal() {
         <ImageUpload
           onChange={(value) => setCustomValue('imageSrc', value)}
           value={imageSrc}
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="How would you describe your place?"
+          subtitle="Short and sweet works best!"
+        />
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register('title', { required: true })}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register('description', { required: true })}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Now, set your price"
+          subtitle="How much do you charge per night?"
+        />
+        <Input
+          id="price"
+          label="Price"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register('price', {
+            required: true,
+            valueAsNumber: true,
+          })}
+          errors={errors}
+          required
         />
       </div>
     );
