@@ -14,6 +14,10 @@ const formattedCountries = countries.map((country) => ({
 export default function useCountries() {
   const getAll = () => formattedCountries;
 
+  /**
+   * 국가 정보 가져오기
+   * @param value 국가 코드
+   */
   const getByValue = (value: string) =>
     formattedCountries.find((country) => country.value === value);
 

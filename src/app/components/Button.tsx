@@ -2,7 +2,7 @@ import type { IconType } from 'react-icons';
 
 interface Props {
   label: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   outline?: boolean;
   small?: boolean;
@@ -23,8 +23,8 @@ export default function Button({
       title={label}
       disabled={disabled}
       onClick={onClick}
-      className={`relative w-full rounded-lg transition hover:opacity-80 disabled:cursor-not-allowed
-        disabled:opacity-70
+      className={`relative w-full rounded-lg transition disabled:cursor-not-allowed disabled:opacity-70
+        hover:opacity-80
         ${
           outline
             ? 'border-black bg-white text-black'
