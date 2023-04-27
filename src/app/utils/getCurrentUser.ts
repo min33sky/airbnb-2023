@@ -6,6 +6,9 @@ export async function getSession() {
   return await getServerSession(authOptions);
 }
 
+/**
+ * 현재 로그인한 사용자 정보를 반환하는 함수
+ */
 export default async function getCurrentUser() {
   try {
     const session = await getSession();
