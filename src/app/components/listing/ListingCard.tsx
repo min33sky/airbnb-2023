@@ -71,34 +71,14 @@ export default function ListingCard({
       className="group col-span-1 cursor-pointer"
     >
       <div className="flex w-full flex-col gap-2">
-        <div
-          className="
-            relative
-            aspect-square
-            w-full
-            overflow-hidden
-            rounded-xl
-          "
-        >
+        <div className="relative aspect-square w-full overflow-hidden rounded-xl">
           <Image
             fill
-            className="
-              h-full
-              w-full
-              object-cover
-              transition
-              group-hover:scale-110
-            "
+            className="h-full w-full object-cover transition group-hover:scale-110"
             src={data.imageSrc}
             alt="Listing"
           />
-          <div
-            className="
-            absolute
-            right-3
-            top-3
-          "
-          >
+          <div className="absolute right-3 top-3">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
@@ -108,10 +88,11 @@ export default function ListingCard({
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}
         </div>
-        <div className="flex flex-row items-center gap-1">
+        <div className="flex items-center gap-1">
           <div className="font-semibold">$ {price}</div>
           {!reservation && <div className="font-light">night</div>}
         </div>
+
         {onAction && actionLabel && (
           <Button
             disabled={disabled}
