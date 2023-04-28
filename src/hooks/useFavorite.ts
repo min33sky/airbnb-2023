@@ -9,6 +9,10 @@ interface Props {
   currentUser?: SafeUser | null;
 }
 
+/**
+ * Listing 좋아요를 관리하는 Hook
+ * @returns hasFavorited: boolean, toggleFavorite: () => void
+ */
 export default function useFavorite({ listingId, currentUser }: Props) {
   const router = useRouter();
 
@@ -30,9 +34,8 @@ export default function useFavorite({ listingId, currentUser }: Props) {
       }
 
       try {
-        // 좋아요를 누를꺼지, 취소할꺼지 판별
-
         let request;
+        // recommend variables name
 
         if (hasFavorited) {
           // 좋아요 취소
@@ -45,16 +48,15 @@ export default function useFavorite({ listingId, currentUser }: Props) {
         }
 
         const result = await request();
-        console.log('#### 좋아요 관련 정보: ', result);
 
         if (!result.ok) {
-          throw new Error('좋아요 관련 로직 실패');
+          throw new Error(`${hasFavorited ? '좋아요 취소' : '좋아요'} 실패}`);
         }
         router.refresh();
-        toast.success('좋아요 처리 완료');
+        toast.success(`${hasFavorited ? '좋아요 취소' : '좋아요'} 성공`);
       } catch (error) {
         console.log('##### 좋아요 관련 에러 : ', error);
-        toast.error('좋아요 처리 실패');
+        toast.error('좋아요 관련해서 문제가 생겼어요...');
       }
     },
     [currentUser, hasFavorited, listingId, loginModal, router],
