@@ -2,16 +2,19 @@ import { prisma } from '@/lib/prismaDB';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth/next';
 
-export async function getSession() {
-  return await getServerSession(authOptions);
-}
+// export async function getSession() {
+//   return await getServerSession(authOptions);
+// }
 
 /**
  * 현재 로그인한 사용자 정보를 반환하는 함수
  */
 export default async function getCurrentUser() {
   try {
-    const session = await getSession();
+    // const session = await getSession();
+    const session = await getServerSession(authOptions);
+
+    console.log('########### getCurrentUser session: ', session);
 
     if (!session?.user?.email) {
       return null;

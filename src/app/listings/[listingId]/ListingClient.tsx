@@ -11,6 +11,7 @@ import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Range } from 'react-date-range';
+import { toast } from 'react-hot-toast';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -58,13 +59,48 @@ export default function ListingClient({
     [listing.category],
   );
 
-  const onCreateReservation = useCallback(() => {
+  const onCreateReservation = useCallback(async () => {
     if (!currentUser) {
       return loginModal.onOpen();
     }
 
-    alert('구현중.....');
-  }, [currentUser, loginModal]);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          listingId: listing.id,
+          startDate: dateRange.startDate,
+          endDate: dateRange.endDate,
+          totalPrice,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('예약을 생성하는데 실패했습니다.');
+      }
+
+      toast.success('예약을 생성했습니다.');
+      setDateRange(initialDateRange);
+      // router.push('/trips');
+    } catch (error) {
+      console.log('##### error: ', error);
+      toast.error('예약을 생성하는데 실패했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [
+    currentUser,
+    dateRange.endDate,
+    dateRange.startDate,
+    listing.id,
+    loginModal,
+    totalPrice,
+  ]);
 
   /**
    * @description 예약 날짜가 변경되면 총 가격을 다시 계산한다.
