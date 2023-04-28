@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 interface Props {
-  imageUrl?: string;
+  imageUrl?: string | null;
 }
 
 export default function Avatar({ imageUrl }: Props = {}) {

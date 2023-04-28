@@ -29,13 +29,10 @@ export default function useFavorite({ listingId, currentUser }: Props) {
     async (e: React.MouseEvent) => {
       e.stopPropagation();
 
-      if (!currentUser) {
-        return loginModal.onOpen();
-      }
+      if (!currentUser) return loginModal.onOpen();
 
       try {
         let request;
-        // recommend variables name
 
         if (hasFavorited) {
           // 좋아요 취소
