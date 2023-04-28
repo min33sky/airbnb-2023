@@ -12,7 +12,7 @@ import HeartButton from '../HeartButton';
 interface Props {
   data: SafeListing;
   reservation?: SafeReservation;
-  onAction?: (id?: string) => void;
+  onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
@@ -41,7 +41,7 @@ export default function ListingCard({
         return;
       }
 
-      onAction?.(actionId);
+      onAction?.(actionId!);
     },
     [disabled, onAction, actionId],
   );

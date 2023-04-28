@@ -86,7 +86,7 @@ export default function ListingClient({
 
       toast.success('예약을 생성했습니다.');
       setDateRange(initialDateRange);
-      // router.push('/trips');
+      router.push('/trips');
     } catch (error) {
       console.log('##### error: ', error);
       toast.error('예약을 생성하는데 실패했습니다.');
@@ -99,6 +99,7 @@ export default function ListingClient({
     dateRange.startDate,
     listing.id,
     loginModal,
+    router,
     totalPrice,
   ]);
 
