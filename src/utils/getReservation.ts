@@ -12,6 +12,9 @@ export default async function getReservations({
   authorId,
 }: Props) {
   try {
+    /*
+     * 쿼리 조건에 따라 예약 정보를 가져온다.
+     */
     const query: any = {};
 
     if (listingId) {

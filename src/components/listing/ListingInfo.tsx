@@ -1,6 +1,6 @@
 'use client';
 
-import { SafeUser } from '@/app/types';
+import { SafeUser } from '@/types';
 import useCountries from '@/hooks/useCountries';
 import dynamic from 'next/dynamic';
 import React from 'react';

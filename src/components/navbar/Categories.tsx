@@ -4,7 +4,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Container from '../Container';
 import CategoryBox from '../CategoryBox';
 import useDragScroll from '@/hooks/useDragScroll';
-import { categories } from '@/app/utils/categories';
+import { categories } from '@/utils/categories';
 
 export default function Categories() {
   const params = useSearchParams();

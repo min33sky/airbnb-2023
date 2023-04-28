@@ -1,8 +1,8 @@
-import ClientProvider from './components/ClientProvider';
-import Navbar from './components/navbar/Navbar';
 import './globals.css';
 import { Nunito } from 'next/font/google';
-import getCurrentUser from './utils/getCurrentUser';
+import getCurrentUser from '../utils/getCurrentUser';
+import ClientProvider from '@/components/ClientProvider';
+import Navbar from '@/components/navbar/Navbar';
 
 export const metadata = {
   title: 'Airbnb 2023',
@@ -28,9 +28,8 @@ export default async function RootLayout({
       <body className={`font-nunito ${nunito.variable}`}>
         <ClientProvider>
           <Navbar currentUser={currentUser} />
-
-          {children}
         </ClientProvider>
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );

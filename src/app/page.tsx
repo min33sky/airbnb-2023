@@ -1,8 +1,8 @@
-import Container from './components/Container';
-import EmptyState from './components/EmptyState';
-import ListingCard from './components/listing/ListingCard';
-import getCurrentUser from './utils/getCurrentUser';
-import getListings, { IListingsParams } from './utils/getListings';
+import Container from '@/components/Container';
+import EmptyState from '@/components/EmptyState';
+import ListingCard from '@/components/listing/ListingCard';
+import getCurrentUser from '@/utils/getCurrentUser';
+import getListings, { IListingsParams } from '@/utils/getListings';
 
 interface Props {
   searchParams: IListingsParams;

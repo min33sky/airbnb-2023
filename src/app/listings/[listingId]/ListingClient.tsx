@@ -1,17 +1,17 @@
 'use client';
 
-import Container from '@/app/components/Container';
-import ListingHead from '@/app/components/listing/ListingHead';
-import ListingInfo from '@/app/components/listing/ListingInfo';
-import ListingReservation from '@/app/components/listing/ListingReservation';
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
-import { categories } from '@/app/utils/categories';
+import { SafeListing, SafeReservation, SafeUser } from '@/types';
+import { categories } from '@/utils/categories';
 import useLoginModal from '@/hooks/useLoginModal';
 import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Range } from 'react-date-range';
 import { toast } from 'react-hot-toast';
+import Container from '@/components/Container';
+import ListingHead from '@/components/listing/ListingHead';
+import ListingInfo from '@/components/listing/ListingInfo';
+import ListingReservation from '@/components/listing/ListingReservation';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -120,7 +120,7 @@ export default function ListingClient({
   return (
     <Container>
       <div className="mx-auto max-w-screen-lg">
-        <div className="flex flex-col gap-6 pt-28">
+        <div className="flex flex-col gap-6">
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}

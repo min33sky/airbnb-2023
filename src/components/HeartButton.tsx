@@ -3,8 +3,8 @@
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import React from 'react';
-import { SafeUser } from '../types';
 import useFavorite from '@/hooks/useFavorite';
+import { SafeUser } from '@/types';
 
 interface Props {
   listingId: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
+import { SafeListing, SafeReservation, SafeUser } from '@/types';
 import useCountries from '@/hooks/useCountries';
 import { format } from 'date-fns';
 import Image from 'next/image';

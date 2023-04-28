@@ -7,7 +7,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Modal from './Modal';
-import { categories } from '@/app/utils/categories';
+import { categories } from '@/utils/categories';
 import Heading from '../Heading';
 import CategoryInput from '../inputs/CategoryInput';
 import CountrySelect from '../inputs/CountrySelect';

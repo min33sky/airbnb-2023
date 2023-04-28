@@ -1,10 +1,10 @@
-import EmptyState from '@/app/components/EmptyState';
-import getCurrentUser from '@/app/utils/getCurrentUser';
-import getListingById from '@/app/utils/getListingById';
+import getCurrentUser from '@/utils/getCurrentUser';
+import getListingById from '@/utils/getListingById';
 import React from 'react';
 import ListingClient from './ListingClient';
-import getListingsIds from '@/app/utils/getListingsIds';
-import getReservations from '@/app/utils/getReservation';
+import getListingsIds from '@/utils/getListingsIds';
+import getReservations from '@/utils/getReservation';
+import EmptyState from '@/components/EmptyState';
 
 //? Dev 모드에서는 에러가 난다. (버그인듯)
 // export async function generateStaticParams() {

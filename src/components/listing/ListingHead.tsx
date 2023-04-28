@@ -1,4 +1,4 @@
-import { SafeUser } from '@/app/types';
+import { SafeUser } from '@/types';
 import useCountries from '@/hooks/useCountries';
 import React from 'react';
 import Heading from '../Heading';

@@ -1,4 +1,4 @@
-import { SafeUser } from '@/app/types';
+import { SafeUser } from '@/types';
 import { useRouter } from 'next/navigation';
 import useLoginModal from './useLoginModal';
 import { useCallback, useMemo } from 'react';

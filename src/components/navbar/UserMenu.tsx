@@ -7,7 +7,7 @@ import MenuItem from './MenuItem';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
-import { SafeUser } from '@/app/types';
+import { SafeUser } from '@/types';
 import useLoginModal from '@/hooks/useLoginModal';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import useRentModal from '@/hooks/useRentModal';
