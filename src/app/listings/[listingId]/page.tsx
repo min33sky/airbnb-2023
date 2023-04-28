@@ -3,6 +3,18 @@ import getCurrentUser from '@/app/utils/getCurrentUser';
 import getListingById from '@/app/utils/getListingById';
 import React from 'react';
 import ListingClient from './ListingClient';
+import getListingsIds from '@/app/utils/getListingsIds';
+import getListings from '@/app/utils/getListings';
+
+export const dynamic = 'force-dynamic';
+
+export async function generateStaticParams() {
+  const listings = await getListings({});
+
+  return listings.map((listing) => ({
+    listingId: listing.id,
+  }));
+}
 
 interface Props {
   params: {
@@ -13,8 +25,6 @@ interface Props {
 export default async function ListingPage({ params: { listingId } }: Props) {
   const listing = await getListingById(listingId);
   const currentUser = await getCurrentUser();
-
-  console.log('##### listingPage: ', listing);
 
   if (!listing) {
     return <EmptyState />;
