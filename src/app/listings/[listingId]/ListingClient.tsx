@@ -3,12 +3,20 @@
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listing/ListingHead';
 import ListingInfo from '@/app/components/listing/ListingInfo';
+import ListingReservation from '@/app/components/listing/ListingReservation';
 import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 import { categories } from '@/app/utils/categories';
 import useLoginModal from '@/hooks/useLoginModal';
+import { differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Range } from 'react-date-range';
 
+const initialDateRange = {
+  startDate: new Date(),
+  endDate: new Date(),
+  key: 'selection',
+};
 interface Props {
   reservations?: SafeReservation[];
   listing: SafeListing & {
@@ -18,17 +26,60 @@ interface Props {
 }
 
 export default function ListingClient({
-  reservations,
+  reservations = [],
   listing,
   currentUser,
 }: Props) {
   const router = useRouter();
   const loginModal = useLoginModal();
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(listing.price);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+
+  const disabledDates = useMemo(() => {
+    let dates: Date[] = [];
+
+    reservations.forEach((reservation) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      });
+
+      console.log('##### disabledDate range: ', range);
+
+      dates = [...dates, ...range];
+    });
+
+    return dates;
+  }, [reservations]);
 
   const category = useMemo(
     () => categories.find((items) => items.label === listing.category),
     [listing.category],
   );
+
+  const onCreateReservation = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    alert('구현중.....');
+  }, [currentUser, loginModal]);
+
+  /**
+   * @description 예약 날짜가 변경되면 총 가격을 다시 계산한다.
+   */
+  useEffect(() => {
+    if (dateRange.startDate && dateRange.endDate) {
+      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
+
+      if (dayCount && listing.price) {
+        setTotalPrice(dayCount * listing.price);
+      } else {
+        setTotalPrice(listing.price);
+      }
+    }
+  }, [dateRange, listing.price]);
 
   return (
     <Container>
@@ -41,7 +92,7 @@ export default function ListingClient({
             id={listing.id}
             currentUser={currentUser}
           />
-          <div>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-7 md:gap-10">
             <ListingInfo
               user={listing.user}
               description={listing.description}
@@ -51,6 +102,17 @@ export default function ListingClient({
               locationValue={listing.locationValue}
               category={category}
             />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                dateRange={dateRange}
+                totalPrice={totalPrice}
+                onChangeDate={setDateRange}
+                onSubmit={onCreateReservation}
+                disabledDates={disabledDates}
+                disabled={isLoading}
+              />
+            </div>
           </div>
         </div>
       </div>
