@@ -4,17 +4,15 @@ import getListingById from '@/app/utils/getListingById';
 import React from 'react';
 import ListingClient from './ListingClient';
 import getListingsIds from '@/app/utils/getListingsIds';
-import getListings from '@/app/utils/getListings';
 
-export const dynamic = 'force-dynamic';
+//? Dev 모드에서는 에러가 난다. (버그인듯)
+// export async function generateStaticParams() {
+//   const listings = await getListingsIds();
 
-export async function generateStaticParams() {
-  const listings = await getListings({});
-
-  return listings.map((listing) => ({
-    listingId: listing.id,
-  }));
-}
+//   return listings.map((listing) => ({
+//     listingId: listing.id,
+//   }));
+// }
 
 interface Props {
   params: {
