@@ -111,12 +111,12 @@ export default function RentModal() {
 
     console.log('## Rent : ', data);
 
+    console.log('이미지 주소 : ', data.imageSrc);
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!! 테스트용 (지울꺼임 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ)
-    if (!data.imageSrc) {
-      setCustomValue(
-        'imageSrc',
-        'https://res.cloudinary.com/dfqxossjf/image/upload/v1682478401/tga33uhnyz6m3lfydtcl.jpg',
-      );
+    if (data.imageSrc === '' || !data.imageSrc) {
+      data.imageSrc =
+        'https://images.unsplash.com/photo-1682748518466-363fbb22abee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
     }
 
     setIsLoading(true);
