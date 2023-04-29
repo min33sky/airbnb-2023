@@ -1,4 +1,6 @@
-export default function loading() {
+import Loader from '@/components/Loader';
+
+const SkeletonExample = () => {
   return (
     <div>
       <ul className="mt-44 space-y-2">
@@ -18,4 +20,8 @@ export default function loading() {
       </ul>
     </div>
   );
+};
+
+export default function loading() {
+  return <Loader />;
 }
