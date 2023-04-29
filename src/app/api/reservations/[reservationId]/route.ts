@@ -2,16 +2,13 @@ import { prisma } from '@/lib/prismaDB';
 import getCurrentUser from '@/utils/getCurrentUser';
 import { NextResponse } from 'next/server';
 
-export async function DELETE(
-  request: Request,
-  {
-    params,
-  }: {
-    params: {
-      reservationId: string;
-    };
-  },
-) {
+interface ReservationsProps {
+  params: {
+    reservationId: string;
+  };
+}
+
+export async function DELETE(request: Request, { params }: ReservationsProps) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
