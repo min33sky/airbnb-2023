@@ -42,7 +42,7 @@ export default async function getListings({
       query = {
         ...query,
         guestCount: {
-          gte: guestCount,
+          gte: +guestCount, //? url에서 받아오는 값은 string이므로 number로 변환
         },
       };
     }
@@ -51,7 +51,7 @@ export default async function getListings({
       query = {
         ...query,
         roomCount: {
-          gte: roomCount,
+          gte: +roomCount,
         },
       };
     }
@@ -60,7 +60,7 @@ export default async function getListings({
       query = {
         ...query,
         bathroomCount: {
-          gte: bathroomCount,
+          gte: +bathroomCount,
         },
       };
     }
