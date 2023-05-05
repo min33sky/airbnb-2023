@@ -52,7 +52,7 @@ export default function UserMenu({ currentUser }: Props) {
         {isOpen && (
           <div
             ref={targetRef}
-            className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4"
+            className="absolute right-0 top-12 z-50 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md md:w-3/4"
           >
             <div className="flex cursor-pointer flex-col">
               {currentUser ? (
