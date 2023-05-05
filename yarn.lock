@@ -63,10 +63,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@cloudinary-util/url-loader@^3.1.1":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@cloudinary-util/url-loader/-/url-loader-3.2.0.tgz#fba461b291eaa03ed1a4048b3d68a8e94e00ba54"
-  integrity sha512-jCgguukNTPLKGQZIVWRObXHySBde16wPvTs1S8J89/vtPhQsGxpE83jOVCll539ndm5qa5DrFfsgAsLd3g9CxQ==
+"@cloudinary-util/url-loader@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@cloudinary-util/url-loader/-/url-loader-3.5.1.tgz#42ce7a6f279530a05d62e453006666f7ee34c4c9"
+  integrity sha512-Czh9/afEDtLBNuGoSPTvNSgUILCFMDd9pTwwLdonuTI+F5vJhGHYSLLmQF2ddDHVMd2c3S4RkcEC1Hhfm6x4Ow==
   dependencies:
     "@cloudinary-util/util" "2.0.1"
     "@cloudinary/url-gen" "^1.8.7"
@@ -2216,12 +2216,12 @@ next-auth@^4.22.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-next-cloudinary@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/next-cloudinary/-/next-cloudinary-4.8.0.tgz#6fd6d990c3f2735ad9b77e15a4e26a07dae5fcfc"
-  integrity sha512-Jzn0xdIz3EfDTNp9Y7UqCAy/b0Z4T/W4zJMdMGjHXNMHS3nNflVbd9jx5An9ZwYrW94WDJ7FScqWdmUt6Olfiw==
+next-cloudinary@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/next-cloudinary/-/next-cloudinary-4.10.0.tgz#5526fb5a9436c80de18072bb1ff8f414948ad0fa"
+  integrity sha512-yOoG0jFO4y8+hLR+07W2QkTvFKKe6padKVpemEnkaOV/HxBnoHhB4gjXoHIUEVc9aKjEsji+3ViwwFzWR4ukMA==
   dependencies:
-    "@cloudinary-util/url-loader" "^3.1.1"
+    "@cloudinary-util/url-loader" "^3.5.1"
     "@cloudinary-util/util" "^2.0.1"
     "@cloudinary/url-gen" "^1.8.6"
 
@@ -2676,10 +2676,10 @@ react-list@^0.8.13:
   dependencies:
     prop-types "15"
 
-react-select@^5.7.2:
-  version "5.7.2"
-  resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.7.2.tgz#ccd40071b9429277983bf15526e7a5773a060e09"
-  integrity sha512-cTlJkQ8YjV6T/js8wW0owTzht0hHGABh29vjLscY4HfZGkv7hc3FFTmRp9NzY/Ib1uQ36GieAKEjxpHdpCFpcA==
+react-select@^5.7.3:
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.7.3.tgz#fa0dc9a23cad6ff3871ad3829f6083a4b54961a2"
+  integrity sha512-z8i3NCuFFWL3w27xq92rBkVI2onT0jzIIPe480HlBjXJ3b5o6Q+Clp4ydyeKrj9DZZ3lrjawwLC5NGl0FSvUDg==
   dependencies:
     "@babel/runtime" "^7.12.0"
     "@emotion/cache" "^11.4.0"
@@ -3322,9 +3322,9 @@ zod@^3.21.4:
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
   integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
 
-zustand@^4.3.7:
-  version "4.3.7"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.3.7.tgz#501b1f0393a7f1d103332e45ab574be5747fedce"
-  integrity sha512-dY8ERwB9Nd21ellgkBZFhudER8KVlelZm8388B5nDAXhO/+FZDhYMuRnqDgu5SYyRgz/iaf8RKnbUs/cHfOGlQ==
+zustand@^4.3.8:
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.3.8.tgz#37113df8e9e1421b0be1b2dca02b49b76210e7c4"
+  integrity sha512-4h28KCkHg5ii/wcFFJ5Fp+k1J3gJoasaIbppdgZFO4BPJnsNxL0mQXBSFgOgAdCdBj35aDTPvdAJReTMntFPGg==
   dependencies:
     use-sync-external-store "1.2.0"
