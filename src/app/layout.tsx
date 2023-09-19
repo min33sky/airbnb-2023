@@ -25,7 +25,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`font-nunito ${nunito.variable}`}>
+      <body
+        className={`font-nunito ${nunito.variable} scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-500`}
+      >
         <ClientProvider>
           <Navbar currentUser={currentUser} />
         </ClientProvider>
